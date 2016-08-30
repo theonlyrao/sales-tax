@@ -11,8 +11,14 @@ public class SalesTaxCalculator {
     BufferedReader inputStream = null;
     PrintWriter outputStream = null;
     List<String> rawCart = new ArrayList<String>();
+    ParsedLine parsedLine;
     
     public SalesTaxCalculator() {};
+
+    public ParsedLine parseLine(String rawLine) {
+	parsedLine = new ParsedLine(rawLine);
+	return parsedLine;
+    }
 
     public List<String> analyze(String path) {
 
@@ -20,7 +26,9 @@ public class SalesTaxCalculator {
 	
 	List<String> formattedOutput = new ArrayList<String>();
 	formattedOutput = rawCart;
-	
+	for ( int i = 0; i < formattedOutput.size(); i++ ) {
+	    System.out.println(formattedOutput.get(i));
+	}
 	return formattedOutput;
     }
 

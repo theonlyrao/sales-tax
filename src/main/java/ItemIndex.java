@@ -1,7 +1,4 @@
-import java.util.Collection;
-import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.Set;
 
 public class ItemIndex {
     Hashtable<String, String> itemTypes = new Hashtable<String, String>();

@@ -3,6 +3,21 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 public class SalesTaxCalculatorTest {
+    @Test public void canSplitString() {
+	SalesTaxCalculator calculator = new SalesTaxCalculator();
+	String rawLineItem = "2 imported box of chocolates at 8.25";
+
+	ParsedLine parsedLine;
+	parsedLine = calculator.parseLine(rawLineItem);
+
+	assertEquals(2, parsedLine.quantity());
+	assertEquals(true, parsedLine.isImported());
+	assertEquals("box of chocolates", parsedLine.item());
+	assertEquals(16.50, parsedLine.subTotal());
+	assertEquals(0, parsedLine.tax());
+
+    }
+    
     @Test public void testThreeDomesticCart() {
 	SalesTaxCalculator calculator = new SalesTaxCalculator();
 	String cartPath = "./src/test/java/carts/threeDomestic.txt";
