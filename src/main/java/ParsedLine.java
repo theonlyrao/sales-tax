@@ -1,13 +1,19 @@
+import java.lang.Integer;
+
 public class ParsedLine {
 
     String line;
+    String[] tmp = new String[5];
+
 
     public ParsedLine(String rawLine) {
 	line = rawLine;
+	tmp = line.split("\\s+");	
     }
 
     public int quantity() {
-	int quantity = 0;
+	int quantity;
+	quantity = Integer.parseInt(tmp[0]);
 	return quantity;
     }
 
