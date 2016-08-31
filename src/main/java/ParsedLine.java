@@ -3,22 +3,22 @@ import java.lang.Integer;
 public class ParsedLine {
 
     String line;
-    String[] tmp = new String[5];
-
 
     public ParsedLine(String rawLine) {
 	line = rawLine;
-	tmp = line.split("\\s+");	
     }
 
     public int quantity() {
+	String[] tmp = new String[5];
+	tmp = line.split("\\s+");
+	
 	int quantity;
 	quantity = Integer.parseInt(tmp[0]);
 	return quantity;
     }
 
     public boolean isImported() {
-	return false;
+	return line.contains("imported");
     }
 
     public String item() {
