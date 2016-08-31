@@ -46,7 +46,27 @@ public class ParsedLine {
     }
 
     public float tax() {
-	float tax = 0;
+	float multiplier = 0;
+	
+	ItemIndex index = new ItemIndex();
+	index.load();
+
+	String localItem;
+	localItem = this.item();
+
+	String taxType;
+	taxType = index.typeOf(localItem);
+
+	if (this.isImported()) {
+	    multiplier += 0.05;
+	}
+
+	if (taxType.equals("misc")) {
+	    multiplier += 0.1;
+	}
+	
+	float tax;
+	tax = multiplier * this.subTotal();
 	return tax;
     }
 }

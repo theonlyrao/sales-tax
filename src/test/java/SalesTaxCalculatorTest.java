@@ -14,7 +14,7 @@ public class SalesTaxCalculatorTest {
 	assertEquals(true, parsedLine.isImported());
 	assertEquals("box of chocolates", parsedLine.item());
 	assertEquals(16.50, parsedLine.subTotal(), 0.03);
-	assertEquals(0, parsedLine.tax(), 0.03);
+	assertEquals(0.825, parsedLine.tax(), 0.03);
 
     }
     

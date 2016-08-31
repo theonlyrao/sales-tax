@@ -10,7 +10,8 @@ public class ItemIndex {
 	itemTypes.put("headache pills", "medical product");
 	itemTypes.put("box of chocolates", "food");
 	itemTypes.put("box of imported chocolates", "food");
-
+	itemTypes.put("music CD", "misc");	
+	itemTypes.put("bottle of perfume", "misc");
     }
 
     public String typeOf(String item) {
