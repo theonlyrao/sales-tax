@@ -13,8 +13,8 @@ public class SalesTaxCalculatorTest {
 	assertEquals(2, parsedLine.quantity());
 	assertEquals(true, parsedLine.isImported());
 	assertEquals("box of chocolates", parsedLine.item());
-	assertEquals(16.50, parsedLine.subTotal());
-	assertEquals(0, parsedLine.tax());
+	assertEquals(16.50, parsedLine.subTotal(), 0.03);
+	assertEquals(0, parsedLine.tax(), 0.03);
 
     }
     

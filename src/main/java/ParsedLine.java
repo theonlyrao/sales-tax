@@ -1,4 +1,5 @@
 import java.lang.Integer;
+import java.lang.Float;
 
 public class ParsedLine {
 
@@ -36,8 +37,12 @@ public class ParsedLine {
     }
 
     public float subTotal() {
-	float subTotal = 0;
-	return subTotal;
+	String[] c = new String[5];	
+	c = line.split("\\s+");
+
+	float subTotal;
+	subTotal = Float.parseFloat(c[c.length-1]);
+	return subTotal * this.quantity();
     }
 
     public float tax() {
