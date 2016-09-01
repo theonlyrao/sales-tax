@@ -67,6 +67,10 @@ public class ParsedLine {
 	
 	float tax;
 	tax = multiplier * this.subTotal();
-	return tax;
+	return (float) (Math.ceil(tax * 2)/2);
+    }
+
+    public float total() {
+	return this.subTotal() + this.tax();
     }
 }

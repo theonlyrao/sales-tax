@@ -24,12 +24,25 @@ public class SalesTaxCalculator {
 
 	rawCart = this.parseCart(path);
 	
-	List<String> formattedOutput = new ArrayList<String>();
-	formattedOutput = rawCart;
-	for ( int i = 0; i < formattedOutput.size(); i++ ) {
-	    System.out.println(formattedOutput.get(i));
+	List<String> c = new ArrayList<String>();
+	float taxes = 0;
+	float total = 0;
+	
+	for ( int i = 0; i < rawCart.size(); i++ ) {
+	    ParsedLine item = this.parseLine(rawCart.get(i));
+	    if (item.isImported()) {
+		c.add(item.quantity() + " imported " + item.item() + ": " + item.total());
+	    } else {
+		c.add(item.quantity() + " " + item.item() + ": " + item.total());
+	    }
+	    taxes += item.tax();
+	    total += item.total();
 	}
-	return formattedOutput;
+
+	c.add("Sales Taxes: " + taxes);
+	c.add("Total: " + total);
+
+	return c;
     }
 
     public List<String> parseCart(String path) {
