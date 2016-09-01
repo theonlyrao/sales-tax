@@ -67,7 +67,8 @@ public class ParsedLine {
 	
 	float tax;
 	tax = multiplier * this.subTotal();
-	return (float) (Math.ceil(tax * 2)/2);
+	System.out.println("tax for " + localItem + " is " + tax);
+	return (float) (Math.ceil(tax * 20)/20);
     }
 
     public float total() {
