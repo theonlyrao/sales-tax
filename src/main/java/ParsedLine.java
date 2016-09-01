@@ -30,14 +30,14 @@ public class ParsedLine {
 	b2 = b1[1].split(" at");
 
 	if (b2[0].contains("imported")) {
-	    b2[0] = b2[0].replace("imported", "");
+	    b2[0] = b2[0].replace("imported ", "");
 	} 
 
 	return b2[0].trim();
     }
 
     public float subTotal() {
-	String[] c = new String[5];	
+	String[] c = new String[10];	
 	c = line.split("\\s+");
 
 	float subTotal;

@@ -7,7 +7,7 @@ public class ItemIndex {
 
 	itemTypes.put("chocolate bar", "food");
 	itemTypes.put("book", "book");
-	itemTypes.put("headache pills", "medical product");
+	itemTypes.put("packet of headache pills", "medical product");
 	itemTypes.put("box of chocolates", "food");
 	itemTypes.put("box of imported chocolates", "food");
 	itemTypes.put("music CD", "misc");	
