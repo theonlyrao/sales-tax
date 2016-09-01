@@ -8,7 +8,6 @@ import java.util.List;
 import java.math.BigDecimal;
 
 public class SalesTaxCalculator {
-
     BufferedReader inputStream = null;
     PrintWriter outputStream = null;
     List<String> rawCart = new ArrayList<String>();
@@ -22,7 +21,6 @@ public class SalesTaxCalculator {
     }
 
     public List<String> analyze(String path) {
-
 	rawCart = this.parseCart(path);
 	
 	List<String> c = new ArrayList<String>();
@@ -55,7 +53,6 @@ public class SalesTaxCalculator {
 
             String l;
             while ((l = inputStream.readLine()) != null) {
-                //outputStream.println(l);
 		cartItems.add(l);
             }
 	    inputStream.close();

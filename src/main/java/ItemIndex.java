@@ -4,7 +4,6 @@ public class ItemIndex {
     Hashtable<String, String> itemTypes = new Hashtable<String, String>();
 
     public void load() {
-
 	itemTypes.put("chocolate bar", "food");
 	itemTypes.put("book", "book");
 	itemTypes.put("packet of headache pills", "medical product");

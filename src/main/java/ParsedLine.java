@@ -17,7 +17,6 @@ public class ParsedLine {
 	a = line.split("\\s+", 2);
 	
 	BigDecimal quantity = new BigDecimal(a[0]);
-	//quantity = Integer.parseInt(a[0]);
 	return quantity;
     }
 
@@ -44,8 +43,6 @@ public class ParsedLine {
 	c = line.split("\\s+");
 
 	BigDecimal subTotal = new BigDecimal(c[c.length-1]);
-	//subTotal = Float.parseFloat(c[c.length-1]);
-	//return subTotal * this.quantity();
 
 	return subTotal.multiply(this.quantity());
     }
@@ -78,8 +75,6 @@ public class ParsedLine {
 	BigDecimal[] q = t.multiply(new BigDecimal("100")).divideAndRemainder(new BigDecimal("10"));
 	BigDecimal r = q[1];
 
-	//System.out.println("remainder is " + r);
-	
 	if ( r.equals(new BigDecimal("9.00")) ) {
 	    t = t.add(new BigDecimal("0.01"));
 	}
@@ -111,24 +106,11 @@ public class ParsedLine {
 	if ( r.equals(new BigDecimal("1.00")) ) {
 	    t = t.add(new BigDecimal("0.04"));
 	}
-	
 
-	// BigDecimal twenty = new BigDecimal(20);
-
-	// BigDecimal tax = new BigDecimal(((t.multiply(twenty)).divide(twenty)).ROUND_CEILING);
-
-	//MathContext mc = new MathContext(5, RoundingMode.UP);
-
-	//BigDecimal hundred = new BigDecimal(100);
-	//BigDecimal tax = t.multiply(hundred);
-	//tax = t.round(mc);
-	//System.out.println(this.item() + " tax is " + t);	
 	return t;
     }
 
     public BigDecimal total() {
-
-	//return this.subTotal() + this.tax();
 	BigDecimal total = this.subTotal().add(this.tax());
 
 	return total;
