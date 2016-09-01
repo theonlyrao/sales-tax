@@ -27,8 +27,38 @@ public class SalesTaxCalculatorTest {
     	assertEquals("1 book: 12.49", output.get(0));
     	assertEquals("1 music CD: 16.49", output.get(1));
     	assertEquals("1 chocolate bar: 0.85", output.get(2));
+    	assertEquals("Sales Taxes: 1.50", output.get(3));	
     	assertEquals("Total: 29.83", output.get(4));
     }
+
+    @Test public void testTwoImportedCart() {
+    	SalesTaxCalculator calculator = new SalesTaxCalculator();
+    	String cartPath = "./src/test/java/carts/twoImported.txt";
+
+    	List<String> output;
+    	output = calculator.analyze(cartPath);
+
+    	assertEquals("1 imported box of chocolates: 10.50", output.get(0));
+    	assertEquals("1 imported bottle of perfume: 54.65", output.get(1));
+    	assertEquals("Sales Taxes: 7.65", output.get(2));	
+    	assertEquals("Total: 65.15", output.get(3));
+    }
+
+    @Test public void testFourMixedCart() {
+    	SalesTaxCalculator calculator = new SalesTaxCalculator();
+    	String cartPath = "./src/test/java/carts/fourMixed.txt";
+
+    	List<String> output;
+    	output = calculator.analyze(cartPath);
+
+    	assertEquals("1 imported bottle of perfume: 32.19", output.get(0));
+    	assertEquals("1 bottle of perfume: 20.89", output.get(1));
+    	assertEquals("1 packet of headache pills: 9.75", output.get(2));
+    	assertEquals("1 imported box of chocolates: 11.85", output.get(3));	
+    	assertEquals("Sales Taxes: 6.70", output.get(4));	
+    	assertEquals("Total: 74.68", output.get(5));
+    }
+    
 
     @Test public void canCalculateTax() {
     	SalesTaxCalculator calculator = new SalesTaxCalculator();

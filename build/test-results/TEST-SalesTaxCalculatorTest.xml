@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="SalesTaxCalculatorTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2016-09-01T19:57:26" hostname="Ashwins-MBP-2" time="0.009">
+<testsuite name="SalesTaxCalculatorTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2016-09-01T20:18:55" hostname="Ashwins-MBP-2" time="0.022">
   <properties/>
-  <testcase name="canSplitString" classname="SalesTaxCalculatorTest" time="0.004"/>
-  <testcase name="canCalculateTax" classname="SalesTaxCalculatorTest" time="0.002"/>
+  <testcase name="testTwoImportedCart" classname="SalesTaxCalculatorTest" time="0.012"/>
+  <testcase name="canSplitString" classname="SalesTaxCalculatorTest" time="0.001"/>
+  <testcase name="canCalculateTax" classname="SalesTaxCalculatorTest" time="0.001"/>
+  <testcase name="testFourMixedCart" classname="SalesTaxCalculatorTest" time="0.005"/>
   <testcase name="testThreeDomesticCart" classname="SalesTaxCalculatorTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
