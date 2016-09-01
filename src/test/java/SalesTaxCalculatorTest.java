@@ -1,6 +1,7 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
 import java.util.List;
+import java.math.BigDecimal;
 
 public class SalesTaxCalculatorTest {
     @Test public void canSplitString() {
@@ -10,10 +11,10 @@ public class SalesTaxCalculatorTest {
     	ParsedLine parsedLine;
     	parsedLine = calculator.parseLine(rawLineItem);
 
-    	assertEquals(2, parsedLine.quantity());
+    	assertEquals(new BigDecimal("2"), parsedLine.quantity());
     	assertEquals(true, parsedLine.isImported());
     	assertEquals("box of chocolates", parsedLine.item());
-    	assertEquals(16.50, parsedLine.subTotal(), 0.03);
+    	assertEquals(new BigDecimal("16.50"), parsedLine.subTotal());
     }
     
     @Test public void testThreeDomesticCart() {
@@ -30,25 +31,25 @@ public class SalesTaxCalculatorTest {
     }
 
     @Test public void canCalculateTax() {
-	SalesTaxCalculator calculator = new SalesTaxCalculator();
-	String cdString = "1 music CD at 14.99";
-	String chocolateString = "1 imported box of chocolates at 10.00";
-	String perfumeString = "1 imported bottle of perfume at 47.50";
+    	SalesTaxCalculator calculator = new SalesTaxCalculator();
+    	String cdString = "1 music CD at 14.99";
+    	String chocolateString = "1 imported box of chocolates at 10.00";
+    	String perfumeString = "1 imported bottle of perfume at 47.50";
 	
-	ParsedLine cd = calculator.parseLine(cdString);
-	ParsedLine chocolate = calculator.parseLine(chocolateString);
-	ParsedLine perfume = calculator.parseLine(perfumeString);
+    	ParsedLine cd = calculator.parseLine(cdString);
+    	ParsedLine chocolate = calculator.parseLine(chocolateString);
+    	ParsedLine perfume = calculator.parseLine(perfumeString);
 
-	assertEquals(false, cd.isImported());
-	assertEquals("music CD", cd.item());
-	assertEquals(1.50, cd.tax(), 0.001);
+    	assertEquals(false, cd.isImported());
+    	assertEquals("music CD", cd.item());
+    	assertEquals(new BigDecimal("1.50"), cd.tax());
 
-	assertEquals(true, chocolate.isImported());
-	assertEquals("box of chocolates", chocolate.item());
-	assertEquals(0.50, chocolate.tax(), 0.001);
+    	assertEquals(true, chocolate.isImported());
+    	assertEquals("box of chocolates", chocolate.item());
+    	assertEquals(new BigDecimal("0.50"), chocolate.tax());
 
-	assertEquals(true, perfume.isImported());
-	assertEquals("bottle of perfume", perfume.item());
-	assertEquals(7.15, perfume.tax(), 0.001);
+    	assertEquals(true, perfume.isImported());
+    	assertEquals("bottle of perfume", perfume.item());
+    	assertEquals(new BigDecimal("7.15"), perfume.tax());
     }
 }

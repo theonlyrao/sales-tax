@@ -1,5 +1,8 @@
 import java.lang.Integer;
 import java.lang.Float;
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 
 public class ParsedLine {
 
@@ -9,12 +12,12 @@ public class ParsedLine {
 	line = rawLine;
     }
 
-    public int quantity() {
+    public BigDecimal quantity() {
 	String[] a = new String[5];
 	a = line.split("\\s+", 2);
 	
-	int quantity;
-	quantity = Integer.parseInt(a[0]);
+	BigDecimal quantity = new BigDecimal(a[0]);
+	//quantity = Integer.parseInt(a[0]);
 	return quantity;
     }
 
@@ -36,17 +39,21 @@ public class ParsedLine {
 	return b2[0].trim();
     }
 
-    public float subTotal() {
+    public BigDecimal subTotal() {
 	String[] c = new String[10];	
 	c = line.split("\\s+");
 
-	float subTotal;
-	subTotal = Float.parseFloat(c[c.length-1]);
-	return subTotal * this.quantity();
+	BigDecimal subTotal = new BigDecimal(c[c.length-1]);
+	//subTotal = Float.parseFloat(c[c.length-1]);
+	//return subTotal * this.quantity();
+
+	return subTotal.multiply(this.quantity());
     }
 
-    public float tax() {
-	float multiplier = 0;
+    public BigDecimal tax() {
+	BigDecimal multiplier = new BigDecimal(0);
+	BigDecimal importTax = new BigDecimal("0.05");
+	BigDecimal miscTax = new BigDecimal("0.10");
 	
 	ItemIndex index = new ItemIndex();
 	index.load();
@@ -58,20 +65,72 @@ public class ParsedLine {
 	taxType = index.typeOf(localItem);
 
 	if (this.isImported()) {
-	    multiplier += 0.05;
+	    multiplier = multiplier.add(importTax);
 	}
 
 	if (taxType.equals("misc")) {
-	    multiplier += 0.1;
+	    multiplier = multiplier.add(miscTax);
 	}
 	
-	float tax;
-	tax = multiplier * this.subTotal();
-	System.out.println("tax for " + localItem + " is " + tax);
-	return (float) (Math.ceil(tax * 20)/20);
+	BigDecimal t;
+	t = multiplier.multiply(this.subTotal()).setScale(2, RoundingMode.UP);
+
+	BigDecimal[] q = t.multiply(new BigDecimal("100")).divideAndRemainder(new BigDecimal("10"));
+	BigDecimal r = q[1];
+
+	//System.out.println("remainder is " + r);
+	
+	if ( r.equals(new BigDecimal("9.00")) ) {
+	    t = t.add(new BigDecimal("0.01"));
+	}
+
+	if ( r.equals(new BigDecimal("8.00")) ) {
+	    t = t.add(new BigDecimal("0.02"));
+	}
+
+	if ( r.equals(new BigDecimal("7.00")) ) {
+	    t = t.add(new BigDecimal("0.03"));
+	}
+
+	if ( r.equals(new BigDecimal("6.00")) ) {
+	    t = t.add(new BigDecimal("0.04"));
+	}
+
+	if ( r.equals(new BigDecimal("4.00")) ) {
+	    t = t.add(new BigDecimal("0.01"));
+	}
+
+	if ( r.equals(new BigDecimal("3.00")) ) {
+	    t = t.add(new BigDecimal("0.02"));
+	}
+
+	if ( r.equals(new BigDecimal("2.00")) ) {
+	    t = t.add(new BigDecimal("0.03"));
+	}
+
+	if ( r.equals(new BigDecimal("1.00")) ) {
+	    t = t.add(new BigDecimal("0.04"));
+	}
+	
+
+	// BigDecimal twenty = new BigDecimal(20);
+
+	// BigDecimal tax = new BigDecimal(((t.multiply(twenty)).divide(twenty)).ROUND_CEILING);
+
+	//MathContext mc = new MathContext(5, RoundingMode.UP);
+
+	//BigDecimal hundred = new BigDecimal(100);
+	//BigDecimal tax = t.multiply(hundred);
+	//tax = t.round(mc);
+	//System.out.println(this.item() + " tax is " + t);	
+	return t;
     }
 
-    public float total() {
-	return this.subTotal() + this.tax();
+    public BigDecimal total() {
+
+	//return this.subTotal() + this.tax();
+	BigDecimal total = this.subTotal().add(this.tax());
+
+	return total;
     }
 }

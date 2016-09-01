@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.math.BigDecimal;
 
 public class SalesTaxCalculator {
 
@@ -25,8 +26,8 @@ public class SalesTaxCalculator {
 	rawCart = this.parseCart(path);
 	
 	List<String> c = new ArrayList<String>();
-	float taxes = 0;
-	float total = 0;
+	BigDecimal taxes = new BigDecimal(0);
+	BigDecimal total = new BigDecimal(0);
 	
 	for ( int i = 0; i < rawCart.size(); i++ ) {
 	    ParsedLine item = this.parseLine(rawCart.get(i));
@@ -35,8 +36,8 @@ public class SalesTaxCalculator {
 	    } else {
 		c.add(item.quantity() + " " + item.item() + ": " + item.total());
 	    }
-	    taxes += item.tax();
-	    total += item.total();
+	    taxes = taxes.add(item.tax());
+	    total = total.add(item.total());
 	}
 
 	c.add("Sales Taxes: " + taxes);

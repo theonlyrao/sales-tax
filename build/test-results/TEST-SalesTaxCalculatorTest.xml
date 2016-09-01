@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="SalesTaxCalculatorTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2016-09-01T14:14:05" hostname="Ashwins-MacBook-Pro-2.local" time="0.011">
+<testsuite name="SalesTaxCalculatorTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2016-09-01T19:57:26" hostname="Ashwins-MBP-2" time="0.009">
   <properties/>
   <testcase name="canSplitString" classname="SalesTaxCalculatorTest" time="0.004"/>
   <testcase name="canCalculateTax" classname="SalesTaxCalculatorTest" time="0.002"/>
-  <testcase name="testThreeDomesticCart" classname="SalesTaxCalculatorTest" time="0.004"/>
-  <system-out><![CDATA[tax for music CD is 1.499
-tax for box of chocolates is 0.5
-tax for bottle of perfume is 7.1250005
-tax for book is 0.0
-tax for book is 0.0
-tax for book is 0.0
-tax for music CD is 1.499
-tax for music CD is 1.499
-tax for music CD is 1.499
-tax for chocolate bar is 0.0
-tax for chocolate bar is 0.0
-tax for chocolate bar is 0.0
-]]></system-out>
+  <testcase name="testThreeDomesticCart" classname="SalesTaxCalculatorTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
